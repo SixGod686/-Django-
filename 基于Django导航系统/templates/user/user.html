@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>用户中心</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/main.css">
+    <script type="text/javascript" src="/static/js/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript" src="/static/js/main.js"></script>
+</head>
+
+<body>
+<div class="header_con">
+    <div class="header">
+        <a href="{% url 'design:index' %}" class="logo fl">
+            <img src="/static/imgs/logo.jpg" alt="logo" style="height: 50px;width: 50px">
+        </a>
+        {% if token %}
+            <div class="user_login fr" style="display: block;">
+                <img src="{{ icon }}" class="lgin_pic">
+                <a>{{ user.username }}</a>
+                <a href="{% url 'design:logout' %}">退出</a>
+            </div>
+        {% else %}
+            <div class="user_btns fr">
+                <a href="{% url 'design:login' %}" class="login_btn">登录</a>
+                <a href="{% url 'design:register' %}" class="register_btn">注册</a>
+            </div>
+        {% endif %}
+    </div>
+</div>
+<div class="conter_con">
+    <div class="user_menu_con fl">
+        {% if token %}
+            <div class="user_center_pic">
+                <img src="{{ icon }}">
+            </div>
+        {% endif %}
+        <div class="user_center_name">{{ user.username }}</div>
+        <ul class="option_list">
+            <li class="active"><a href="{% url 'design:user_base_info' %}" target="main_frame">基本资料</a></li>
+            <li><a href="{% url 'design:user_pic_info' %}" target="main_frame">头像设置</a></li>
+            <li><a href="{% url 'design:user_pass_info' %}" target="main_frame">密码修改</a></li>
+            <li><a href="{% url 'design:user_collection' %}" target="main_frame">我的收藏</a></li>
+        </ul>
+    </div>
+    <div class="user_con fr">
+        <iframe src="{% url 'design:user_base_info' %}" frameborder="0" name="main_frame" class="main_frame"
+                id="main_frame"></iframe>
+    </div>
+</div>
+<div class="footer">
+    <div class="footer_links">
+        <a href="">关于我们</a>
+        <span>|</span>
+        <a href="">联系我们</a>
+        <span>|</span>
+        <a href="">招聘人才</a>
+        <span>|</span>
+        <a href="">友情链接</a>
+    </div>
+</div>
+</body>
+</html>

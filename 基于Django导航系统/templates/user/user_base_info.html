@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>用户中心</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/main.css">
+    <script type="text/javascript" src="/static/js/jquery-1.12.4.min.js"></script>
+</head>
+<body class="inframe_body">
+{% if phone %}
+    <form class="base_info" method="post" action="{% url 'design:user_base_info' %}">
+    {% csrf_token %}
+        <h3>基本资料</h3>
+        <div class="form-group">
+            <label>用户名：</label>
+            <input id="username" type="text" name="username" class="input_txt" value="{{ username }}">
+        </div>
+        <div class="form-group">
+            <label>手机号：</label>
+            <input id="phone" type="text" name="phone" class="input_txt" value="{{ phone }}">
+        </div>
+        <div class="form-group">
+            <label>用户昵称：</label>
+            <input id="nick_name" type="text" name="nick_name" class="input_txt" value="{{ nickname }}">
+        </div>
+        <div class="form-group">
+            <label>性别：</label>
+            <input class="gender" type="radio" name="gender" value="MAN"
+                    {% if sex == True  %}
+                   checked="checked"
+                    {% endif %}
+            > <b>男</b>&nbsp;&nbsp;&nbsp;&nbsp;
+            <input class="gender" type="radio" name="gender" value="WOMAN"
+                    {% if sex == False %}
+                   checked="checked"
+                    {% endif %}
+            > <b>女</b>
+        </div>
+        <div class="form-group">
+
+            <input type="submit" value="保 存" class="input_sub">
+
+        </div>
+    </form>
+{% else %}
+    <h3>基本资料</h3>
+    <div class="form-group">
+        <label>用户名：</label>
+        <input id="username" type="text" name="username" class="input_txt" disabled>
+    </div>
+    <div class="form-group">
+        <label>手机号：</label>
+        <input id="phone" type="text" name="phone" class="input_txt" disabled>
+    </div>
+    <div class="form-group">
+        <label>用户昵称：</label>
+        <input id="nick_name" type="text" name="nick_name" class="input_txt" disabled>
+    </div>
+    <div class="form-group">
+        <label>性别：</label>
+        <input class="gender" type="radio" name="gender" value="MAN"
+                {% if sex == True  %}
+               checked="checked"
+                {% endif %}
+        disabled> <b>男</b>&nbsp;&nbsp;&nbsp;&nbsp;
+        <input class="gender" type="radio" name="gender" value="WOMAN"
+                {% if sex == False %}
+               checked="checked"
+                {% endif %}
+        disabled> <b>女</b>
+    </div>
+{% endif %}
+
+</body>
+</html>

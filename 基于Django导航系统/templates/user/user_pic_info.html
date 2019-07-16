@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>用户中心</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/main.css">
+    <script type="text/javascript" src="/static/js/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript" src="/static/js/jquery.form.min.js"></script>
+</head>
+<body class="inframe_body">
+
+<h3>头像设置</h3>
+{% if url %}
+    <div class="form-group">
+        <label class="label01">当前图像：</label>
+        <img src="{{ url }}" alt="用户图片" class="now_user_pic">
+    </div>
+    <div class="form-group">
+        <label>上传图像：</label>
+        <form method="post" html="{:multipart=>true}" data-remote="true"
+              action="{% url 'design:user_pic_info' %}" accept-charset="UTF-8"
+              enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="file" name="icon" value="头像" placeholder="点击更换头像">
+            <br>
+            <input id="button" class="input_sub" type="submit" value="保存">
+        </form>
+    </div>
+{% else %}
+    <div class="form-group">
+        <label>上传图像：</label>
+        <input type="file" name="pic" value="头像" disabled>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="保 存" class="input_sub" disabled>
+    </div>
+{% endif %}
+</body>
+</html>

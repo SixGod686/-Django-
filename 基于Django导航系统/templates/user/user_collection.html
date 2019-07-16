@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>用户中心</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/jquery.pagination.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/main.css">
+    <link rel="stylesheet" href="/static/css/button.css">
+    <script type="text/javascript" src="/static/js/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript" src="/static/js/jquery.pagination.min.js"></script>
+</head>
+<body class="inframe_body">
+<div class="my_collect">
+    <h3>我的收藏</h3>
+    {% if token %}
+        <form id="t">
+            <div id="line">
+                收 藏 路 线
+            </div>
+            <table id="table" align="center">
+                {% for col in collection %}
+                    <tr>
+                        <td>
+                            <div id="text">
+                                起点：<input name="start" value="{{ col.line_origin }}" disabled/>
+                                终点：<input name="end" value="{{ col.line_destination }}" disabled/>
+                            </div>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </form>
+        <form id="t">
+            <div id="line">
+                收 藏 地 点
+            </div>
+            <table id="table" align="center">
+                {% for site in sites %}
+                    <tr>
+                        <td>
+                            <div id="text">
+                                <input value="{{ site.site }}" disabled>
+                            </div>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </form>
+    {% else %}
+        <div id="line">
+            收 藏 路 线
+        </div>
+        <form id="t">
+            <div id="line">
+                收 藏 地 点
+            </div>
+        </form>
+    {% endif %}
+</div>
+</body>
+</html>
